@@ -6,9 +6,11 @@ on:
 
 jobs:
   create_deployment_preview:
-    if: contains(github.event.comment.body, '/create') && contains(github.event.comment.html_url, '/pull/')
+    if: contains(github.event.comment.body '/create') && contains(github.event.comment.html_url, '/pull/')
     runs-on: ubuntu-latest
     steps:
     - name: create
       shell: bash
-      run: echo creating deployment
+      env:
+        BODY: ${{ github.event.comment.body }}
+      run: echo "$BODY"
