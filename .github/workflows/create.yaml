@@ -11,4 +11,6 @@ jobs:
     steps:
     - name: create
       shell: bash
-      run: echo creating deployment
+      env:
+        BODY: ${{ github.event.comment.body }}
+      run: echo "$BODY"
