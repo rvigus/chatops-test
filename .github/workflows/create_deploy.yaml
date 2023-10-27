@@ -6,7 +6,7 @@ on:
 
 jobs:
   create_and_deploy:
-    if: contains(github.event.comment.body, '/create_deploy') && contains(github.event.comment.html_url, '/pull/')
+    if: github.event.comment.body == '/create_deploy' && contains(github.event.comment.html_url, '/pull/')
     runs-on: ubuntu-latest
     steps:
     - name: Create deployment
