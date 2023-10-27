@@ -1,11 +1,11 @@
-name: Astronomer CI - Create Deployment Preview
+name: Astronomer CI - Create and then deploy a preview environment
 
 on:
   issue_comment:
     types: [created, edited, deleted]
 
 jobs:
-  create_deployment_preview:
+  create_and_deploy:
     if: github.event.comment.body == '/create' && contains(github.event.comment.html_url, '/pull/')
     runs-on: ubuntu-latest
     steps:
@@ -14,3 +14,18 @@ jobs:
       env:
         BODY: ${{ github.event.comment.body }}
       run: echo "$BODY"
+
+  run_airflow_tests:
+    runs-on: ubuntu-latest
+    steps:
+    - name: checkout repo
+      uses: actions/checkout@v3
+    - name: Auto-pytest
+      run: echo running some tests
+
+  deploy_to_preview:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Deploy to Deployment Preview
+      uses: astronomer/deploy-action@v0.2
+      run: echo running the deployment
