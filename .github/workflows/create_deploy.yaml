@@ -11,7 +11,7 @@ jobs:
     steps:
     - name: Create deployment
       shell: bash
-      run: exit 1
+      run: echo creating deployment
 
   run_airflow_tests:
     runs-on: ubuntu-latest
