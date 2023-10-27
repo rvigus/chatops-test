@@ -27,5 +27,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Deploy to Deployment Preview
-      uses: astronomer/deploy-action@v0.2
-      run: echo running the deployment
+      run: echo deploying
