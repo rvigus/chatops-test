@@ -5,7 +5,7 @@ on:
     types: [created, edited, deleted]
 
 jobs:
-  create_and_deploy:
+  create_deployment:
     if: github.event.comment.body == '/create' && contains(github.event.comment.html_url, '/pull/')
     runs-on: ubuntu-latest
     steps:
@@ -16,6 +16,7 @@ jobs:
       run: echo "$BODY"
 
   run_airflow_tests:
+    needs: create_deployment
     runs-on: ubuntu-latest
     steps:
     - name: checkout repo
@@ -24,6 +25,7 @@ jobs:
       run: echo running some tests
 
   deploy_to_preview:
+    needs: run_airflow_tests
     runs-on: ubuntu-latest
     steps:
     - name: Deploy to Deployment Preview
