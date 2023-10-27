@@ -11,4 +11,4 @@ jobs:
         with:
           token: ${{ secrets.PAT }}
           commands: example
-          repository: rvigus/slash-command-processor
+          repository: rvigus/command-dispatch
