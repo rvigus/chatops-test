@@ -1,6 +1,9 @@
 name: Astronomer CI - Create and then deploy a preview environment
 
 on:
+  pull_request:
+    branches:
+      - main
   issue_comment:
     types: [created]
 
