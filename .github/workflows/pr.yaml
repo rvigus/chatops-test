@@ -1,26 +1,13 @@
 name: Astronomer CI - Create and then deploy a preview environment
 
 on:
-  issue_comment:
-    types: [created]
+  pull_request:
+    branches:
+      - main
 
 jobs:
-  is_create:
-    if: ${{ github.event.comment.body == '/create' && github.event.issue.pull_request }}
-    runs-on: ubuntu-latest
-    steps:
-      - name: log
-        run: echo Creating deployment
-
-  is_deploy:
-    if: ${{ github.event.comment.body == '/deploy' && github.event.issue.pull_request }}
-    runs-on: ubuntu-latest
-    steps:
-      - name: log
-        run: echo Deploying to preview
-
   create_deployment:
-    needs: is_create
+    if: github.event.pull_request.draft == false
     runs-on: ubuntu-latest
     steps:
     - name: create
