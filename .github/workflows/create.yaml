@@ -27,7 +27,7 @@ jobs:
       shell: bash
       env:
         BODY: ${{ github.event.comment.body }}
-      run: echo "$BODY"
+      run: echo ${GITHUB_REF_NAME}
   
   run_airflow_tests:
     needs: is_deploy
