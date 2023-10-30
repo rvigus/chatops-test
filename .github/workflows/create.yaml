@@ -11,7 +11,7 @@ jobs:
     steps:
       - name: log
         run: echo Creating deployment
-
+        
   is_deploy:
     if: ${{ github.event.comment.body == '/deploy' && github.event.issue.pull_request }}
     runs-on: ubuntu-latest
@@ -28,7 +28,7 @@ jobs:
       env:
         BODY: ${{ github.event.comment.body }}
       run: echo "$BODY"
-  
+
   run_airflow_tests:
     needs: is_deploy
     runs-on: ubuntu-latest
