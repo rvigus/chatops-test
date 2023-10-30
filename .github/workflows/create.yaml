@@ -6,14 +6,14 @@ on:
 
 jobs:
   is_create:
-    if: contains(github.event.comment.body == '/create') && ${{ github.event.issue.pull_request }}
+    if: ${{ github.event.comment.body == '/create' && github.event.issue.pull_request }}
     runs-on: ubuntu-latest
     steps:
       - name: log
         run: echo Creating deployment
 
   is_deploy:
-    if: contains(github.event.comment.body == '/deploy') && ${{ github.event.issue.pull_request }}
+    if: ${{ github.event.comment.body == '/deploy' && github.event.issue.pull_request }}
     runs-on: ubuntu-latest
     steps:
       - name: log
