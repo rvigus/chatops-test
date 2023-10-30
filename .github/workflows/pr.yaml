@@ -2,11 +2,24 @@ name: Astronomer CI - Create and then deploy a preview environment
 
 on:
   pull_request:
-    types: ['opened', 'ready_for_review']
+    types: ['opened', 'edited', 'reopened', 'synchronize', 'ready_for_review']
     branches:
       - main
 
 jobs:
+  setup:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Extract branch name
+      shell: bash
+      run: echo "branch=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}" >> $GITHUB_OUTPUT
+      id: extract_branch
+
+    - name: Check if deployment already exists
+      id: deployment_check
+      runs-on: ubuntu-latest
+      run: echo ${{ steps.extract_branch.outputs.branch }}
+
   create_deployment:
     if: github.event.pull_request.draft == false
     runs-on: ubuntu-latest
