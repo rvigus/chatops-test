@@ -14,7 +14,6 @@ jobs:
       run: echo ${GITHUB_REF_NAME}
   
   run_tests:
-    needs: is_deploy
     runs-on: ubuntu-latest
     steps:
     - name: checkout repo
