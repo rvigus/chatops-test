@@ -1,4 +1,4 @@
-name: Astronomer CI - Create and then deploy a preview environment
+name: Manual job
 
 on:
   workflow_dispatch:
