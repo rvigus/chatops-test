@@ -13,7 +13,7 @@ jobs:
     steps:
     - name: create
       shell: bash
-      run: echo ${ github.event.inputs.branch_name}
+      run: echo ${{ github.event.inputs.branch_name }}
   
   run_tests:
     runs-on: ubuntu-latest
