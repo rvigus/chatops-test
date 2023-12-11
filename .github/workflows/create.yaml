@@ -12,8 +12,8 @@ env:
 
 jobs:
   create_deployment:
+    if: ${{ github.event.inputs.branch_name != "" }}
     runs-on: ubuntu-latest
-    if: ${{ github.event.inputs.branch_name }} != ""
     steps:
     - name: create
       shell: bash
@@ -21,7 +21,7 @@ jobs:
   
   run_tests:
     runs-on: ubuntu-latest
-    if: ${{ github.event.inputs.branch_name }} != ""
+    if: ${{ github.event.inputs.branch_name != "" }}
     steps:
     - name: checkout repo
       uses: actions/checkout@v3
